@@ -14,8 +14,8 @@ git clone -b CentOS-5 https://github.com/CentOS/sig-cloud-instance-images.git
 cd sig-cloud-instance-images/docker
 
 # modify docker script to provision the server
-echo "RUN yum -q update" >> Dockerfile
-echo "RUN yum -q install apache php git" >> Dockerfile
+echo "RUN yum -y update" >> Dockerfile
+echo "RUN yum -y install apache php git" >> Dockerfile
 echo "RUN service httpd start" >> Dockerfile
 echo "git clone https://github.com/jonathonklem/fake_website.git /var/www/html" >> Dockerfile
 
