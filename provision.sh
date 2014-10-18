@@ -15,8 +15,12 @@ cd sig-cloud-instance-images/docker
 
 # modify docker script to provision the server
 echo "RUN yum -y update" >> Dockerfile
-echo "RUN yum -y install apache php git" >> Dockerfile
-echo "RUN service httpd start" >> Dockerfile
+echo "RUN yum -y install apache php wget" >> Dockerfile
+# this isn't necessary echo "RUN service httpd start" >> Dockerfile
+# with cent OS 5 we can't just yum install git -- https://gist.github.com/eddarmitage/2001099
+echo "RUN wget http://packages.sw.be/rpmforge-release/rpmforge-release-0.5.2-2.el5.rf.i386.rpm" >> Dockerfile
+echo "RUN rpm -i rpmforge-release-0.5.2-2.el5.rf.i386.rpm" >> Dockerfile
+echo "RUN yum -y install git-gui" >> Dockerfile
 echo "git clone https://github.com/jonathonklem/fake_website.git /var/www/html" >> Dockerfile
 
 # build our docker container
