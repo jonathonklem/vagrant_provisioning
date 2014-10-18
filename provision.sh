@@ -4,6 +4,7 @@
 
 ## Variables
 HOME=/root
+DOCKERSCRIPT=/root/connectToDocker.sh
 cd $HOME
 
 apt-get update -qq
@@ -31,3 +32,11 @@ docker build -t apache .
 
 # run it in daemon mode
 docker run -d -p 80:80 -t apache /usr/sbin/httpd -D FOREGROUND
+
+# create our 'connectToDocker.sh' script
+echo "#!/bin/bash" >> $DOCKERSCRIPT
+echo "dockerID=$(docker ps -q)" >> $DOCKERSCRIPT
+echo "PID=$(docker inspect --format '{{.State.Pid}}' $dockerID)" >> $DOCKERSCRIPT
+echo "nsenter --target $PID --mount --uts --ipc --net --pid" >> $DOCKERSCRIPT
+chmod +x $DOCKERSCRIPT
+
