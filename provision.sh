@@ -9,5 +9,20 @@ cd $HOME
 apt-get update -qq
 apt-get install -yq git docker.io
 
+# get CentOS 5 docker images
+git clone -b CentOS-5 https://github.com/CentOS/sig-cloud-instance-images.git
+cd sig-cloud-instance-images/docker
+
+# modify docker script to provision the server
+echo "RUN yum -q update" >> Dockerfile
+echo "RUN yum -q install apache php git" >> Dockerfile
+echo "RUN service httpd start" >> Dockerfile
+echo "git clone https://github.com/jonathonklem/fake_website.git /var/www/html" >> Dockerfile
+
+docker build -t apache - < Dockerfile
+
+
+EXPOSE :80
+
 # Setup Docker
 #sudo ln -sf /usr/bin/docker.io /usr/local/bin/docker
