@@ -19,7 +19,7 @@ echo "RUN yum -y install apache php git" >> Dockerfile
 echo "RUN service httpd start" >> Dockerfile
 echo "git clone https://github.com/jonathonklem/fake_website.git /var/www/html" >> Dockerfile
 
-docker build -t apache - < Dockerfile
+docker build -t apache .
 
 
 EXPOSE :80
