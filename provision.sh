@@ -19,8 +19,11 @@ echo "RUN yum -y install apache php git" >> Dockerfile
 echo "RUN service httpd start" >> Dockerfile
 echo "git clone https://github.com/jonathonklem/fake_website.git /var/www/html" >> Dockerfile
 
+# build our docker container
 docker build -t apache .
 
+# run it in daemon mode
+docker run -d -p 80:80 -t apache /usr/sbin/httpd -D FOREGROUND
 
 # Setup Docker
 #sudo ln -sf /usr/bin/docker.io /usr/local/bin/docker
