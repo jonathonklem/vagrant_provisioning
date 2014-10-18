@@ -22,7 +22,5 @@ echo "git clone https://github.com/jonathonklem/fake_website.git /var/www/html" 
 docker build -t apache .
 
 
-EXPOSE :80
-
 # Setup Docker
 #sudo ln -sf /usr/bin/docker.io /usr/local/bin/docker
