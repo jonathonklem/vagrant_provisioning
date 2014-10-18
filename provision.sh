@@ -34,9 +34,9 @@ docker build -t apache .
 docker run -d -p 80:80 -t apache /usr/sbin/httpd -D FOREGROUND
 
 # create our 'connectToDocker.sh' script
-echo "#!/bin/bash" >> $DOCKERSCRIPT
-echo "dockerID=$(docker ps -q)" >> $DOCKERSCRIPT
-echo "PID=$(docker inspect --format '{{.State.Pid}}' $dockerID)" >> $DOCKERSCRIPT
-echo "nsenter --target $PID --mount --uts --ipc --net --pid" >> $DOCKERSCRIPT
+echo '#!/bin/bash' >> $DOCKERSCRIPT
+echo "dockerID=\$(docker ps -q)" >> $DOCKERSCRIPT
+echo "PID=\$(docker inspect --format '{{.State.Pid}}' \$dockerID)" >> $DOCKERSCRIPT
+echo "nsenter --target \$PID --mount --uts --ipc --net --pid" >> $DOCKERSCRIPT
 chmod +x $DOCKERSCRIPT
 
