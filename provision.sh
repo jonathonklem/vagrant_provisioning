@@ -23,6 +23,9 @@ echo "RUN rpm -i rpmforge-release-0.5.2-2.el5.rf.i386.rpm" >> Dockerfile
 echo "RUN yum -y install git-gui" >> Dockerfile
 echo "git clone https://github.com/jonathonklem/fake_website.git /var/www/html" >> Dockerfile
 
+# intall ns enter to enter our docker container
+docker run -v /usr/local/bin:/target jpetazzo/nsenter
+
 # build our docker container
 docker build -t apache .
 
