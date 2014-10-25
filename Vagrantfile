@@ -14,6 +14,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network "private_network", ip: "10.10.10.10"
 
   # Tell Vagrant how we're going to provision our virtual machine
-  # here we're using a simple shell script
+  # here we're copying a file over and using a simple shell script
+  config.vm.provision "file", source: "Dockerfile", destination: "Dockerfile"
+  config.vm.provision "file", source: "connectToDocker.sh", destination: "/root/connectToDocker.sh"
   config.vm.provision "shell", path:   "provision.sh"
 end
