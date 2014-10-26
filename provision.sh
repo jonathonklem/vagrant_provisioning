@@ -19,6 +19,6 @@ docker build -t apache /home/vagrant
 # run it in daemon mode
 docker run -d -p 80:80 -t apache /usr/sbin/httpd -D FOREGROUND
 
-# create our 'connectToDocker.sh' script
+# make sure our script is executable
 chmod +x $DOCKERSCRIPT
 
