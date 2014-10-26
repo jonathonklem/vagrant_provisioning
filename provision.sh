@@ -4,7 +4,7 @@
 
 ## Variables
 HOME=/root
-DOCKERSCRIPT=/root/connectToDocker.sh
+DOCKERSCRIPT=/vagrant/connectToDocker.sh
 cd $HOME
 
 apt-get update -qq
