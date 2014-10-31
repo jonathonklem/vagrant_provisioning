@@ -12,6 +12,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # set our IP
   config.vm.network "private_network", ip: "10.10.10.10"
+  
+  # fix issues on some test systems with memory allocation
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 1024
+    v.cpus   = 2
+  end
 
   # Tell Vagrant how we're going to provision our virtual machine
   # here we're copying a file over and using a simple shell script
